@@ -21,7 +21,13 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Build + Test + Coverage + Coveralls
-        run: mvn clean verify coveralls:report
+      - name: Build with Maven
+        run: mvn -B verify --file pom.xml
+      - name: Run Checkstyle
+        run: mvn checkstyle:check
+      - name: Test with JaCoCo
+        run: mvn test jacoco:report
+      - name: Upload to Coveralls
+        run: mvn coveralls:report
         env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+          COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
