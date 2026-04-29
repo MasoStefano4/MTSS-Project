@@ -21,16 +21,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Compile
-        run: mvn compile
-
-      - name: Test
-        run: mvn test
-
-      - name: Static Analysis and Package
-        run: mvn package
-
-      - name: Coveralls
-        run: mvn coveralls:report
+      - name: Build + Test + Coverage + Coveralls
+        run: mvn clean verify coveralls:report
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
