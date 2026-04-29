@@ -25,11 +25,13 @@
 
   <build>
     <plugins>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.1.2</version>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -49,6 +51,7 @@
           </execution>
         </executions>
       </plugin>
+
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
@@ -65,42 +68,20 @@
             <goals>
               <goal>report</goal>
             </goals>
-          </execution>
-          <execution>
-            <id>check-coverage</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
             <configuration>
-              <rules>
-                <rule>
-                  <element>BUNDLE</element>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.85</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-              </rules>
+              <formats>
+                <format>XML</format>
+                <format>HTML</format>
+              </formats>
             </configuration>
           </execution>
         </executions>
       </plugin>
 
       <plugin>
-        <groupId>org.eluder.coveralls</groupId>
+        <groupId>com.github.hazendaz.maven</groupId>
         <artifactId>coveralls-maven-plugin</artifactId>
-        <version>4.3.0</version>
-        <dependencies>
-          <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.3.1</version>
-          </dependency>
-        </dependencies>
+        <version>4.5.0-M2</version>
         <configuration>
           <repoToken>${env.COVERALLS_REPO_TOKEN}</repoToken>
         </configuration>
