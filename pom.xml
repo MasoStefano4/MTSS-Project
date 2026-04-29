@@ -11,6 +11,7 @@
   <properties>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencies>
@@ -29,7 +30,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.1.2</version>
       </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -49,7 +49,6 @@
           </execution>
         </executions>
       </plugin>
-
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
@@ -71,12 +70,14 @@
       </plugin>
 
       <plugin>
-        <groupId>org.eluder.coveralls</groupId>
+        <groupId>com.github.hazendaz.maven</groupId>
         <artifactId>coveralls-maven-plugin</artifactId>
-        <version>4.3.0</version>
+        <version>4.5.0-M2</version>
+        <configuration>
+          <repoToken>${env.COVERALLS_REPO_TOKEN}</repoToken>
+        </configuration>
       </plugin>
 
     </plugins>
   </build>
-
 </project>
