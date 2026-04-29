@@ -25,7 +25,7 @@ jobs:
         run: mvn compile
 
       - name: Test
-        run: mvn test
+        run: mvn test jacoco:report
 
       - name: Static Analysis and Package
         run: mvn package
