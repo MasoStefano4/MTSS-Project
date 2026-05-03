@@ -6,13 +6,13 @@ package it.unipd.mtss;
 
 public class IntegerToRoman {
 
-    private static final int[] VALUES = {1};
-    private static final String[] SYMBOLS = {"I"};
+    private static final int[] VALUES = {5, 4, 1};
+    private static final String[] SYMBOLS = {"V", "IV", "I"};
 
     public static String convert(int number) {
-        if (number < 1 || number > 3) {
+        if (number < 1 || number > 6) {
             throw new IllegalArgumentException(
-                "Il numero deve essere tra 1 e 3."
+                "Il numero deve essere tra 1 e 6."
             );
         }
 

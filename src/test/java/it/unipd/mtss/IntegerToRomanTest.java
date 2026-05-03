@@ -22,6 +22,21 @@ public class IntegerToRomanTest {
     }
 
     @Test
+    public void convertFour_shouldReturnIV() {
+        assertEquals("IV", IntegerToRoman.convert(4));
+    }
+
+    @Test
+    public void convertFive_shouldReturnV() {
+        assertEquals("V", IntegerToRoman.convert(5));
+    }
+
+    @Test
+    public void convertSix_shouldReturnVI() {
+        assertEquals("VI", IntegerToRoman.convert(6));
+    }
+
+    @Test
     public void convertZero_shouldThrowException() {
         assertThrows(IllegalArgumentException.class, () -> {
             IntegerToRoman.convert(0);
@@ -29,9 +44,9 @@ public class IntegerToRomanTest {
     }
 
     @Test
-    public void convertFour_shouldThrowException() {
+    public void convertSeven_shouldThrowException() {
         assertThrows(IllegalArgumentException.class, () -> {
-            IntegerToRoman.convert(4);
+            IntegerToRoman.convert(7);
         });
     }
 

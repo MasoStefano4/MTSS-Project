@@ -30,6 +30,30 @@ public class RomanPrinterTest {
         "  _| |_     _| |_     _| |_   \n" +
         " |_____|   |_____|   |_____|  \n";
 
+    private static final String EXPECTED_IV =
+        "  _____   __      __  \n" +
+        " |_   _|  \\ \\    / /  \n" +
+        "   | |     \\ \\  / /   \n" +
+        "   | |      \\ \\/ /    \n" +
+        "  _| |_      \\  /     \n" +
+        " |_____|      \\/      \n";
+
+    private static final String EXPECTED_V =
+        "__      __  \n" +
+        "\\ \\    / /  \n" +
+        " \\ \\  / /   \n" +
+        "  \\ \\/ /    \n" +
+        "   \\  /     \n" +
+        "    \\/      \n";
+
+    private static final String EXPECTED_VI =
+        "__      __    _____   \n" +
+        "\\ \\    / /   |_   _|  \n" +
+        " \\ \\  / /      | |    \n" +
+        "  \\ \\/ /       | |    \n" +
+        "   \\  /       _| |_   \n" +
+        "    \\/       |_____|  \n";
+
     @Test
     public void printOne_shouldReturnCorrectAsciiArt() {
         assertEquals(EXPECTED_I, RomanPrinter.print(1));
@@ -46,13 +70,28 @@ public class RomanPrinterTest {
     }
 
     @Test
+    public void printFour_shouldReturnCorrectAsciiArt() {
+        assertEquals(EXPECTED_IV, RomanPrinter.print(4));
+    }
+
+    @Test
+    public void printFive_shouldReturnCorrectAsciiArt() {
+        assertEquals(EXPECTED_V, RomanPrinter.print(5));
+    }
+
+    @Test
+    public void printSix_shouldReturnCorrectAsciiArt() {
+        assertEquals(EXPECTED_VI, RomanPrinter.print(6));
+    }
+
+    @Test
     public void printZero_shouldThrowException() {
         assertThrows(IllegalArgumentException.class, () -> RomanPrinter.print(0));
     }
 
     @Test
-    public void printFour_shouldThrowException() {
-        assertThrows(IllegalArgumentException.class, () -> RomanPrinter.print(4));
+    public void printSeven_shouldThrowException() {
+        assertThrows(IllegalArgumentException.class, () -> RomanPrinter.print(7));
     }
 
     @Test
