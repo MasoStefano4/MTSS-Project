@@ -37,6 +37,26 @@ public class IntegerToRomanTest {
     }
 
     @Test
+    public void convertSeven_shouldReturnVII() {
+        assertEquals("VII", IntegerToRoman.convert(7));
+    }
+
+    @Test
+    public void convertEight_shouldReturnVIII() {
+        assertEquals("VIII", IntegerToRoman.convert(8));
+    }
+
+    @Test
+    public void convertNine_shouldReturnIX() {
+        assertEquals("IX", IntegerToRoman.convert(9));
+    }
+
+    @Test
+    public void convertTen_shouldReturnX() {
+        assertEquals("X", IntegerToRoman.convert(10));
+    }
+
+    @Test
     public void convertZero_shouldThrowException() {
         assertThrows(IllegalArgumentException.class, () -> {
             IntegerToRoman.convert(0);
@@ -44,9 +64,9 @@ public class IntegerToRomanTest {
     }
 
     @Test
-    public void convertSeven_shouldThrowException() {
+    public void convertEleven_shouldThrowException() {
         assertThrows(IllegalArgumentException.class, () -> {
-            IntegerToRoman.convert(7);
+            IntegerToRoman.convert(11);
         });
     }
 
