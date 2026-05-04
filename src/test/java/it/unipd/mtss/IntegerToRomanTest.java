@@ -3,77 +3,97 @@ package it.unipd.mtss;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.function.Executable;
 
 public class IntegerToRomanTest {
 
     @Test
     public void convertOne_shouldReturnI() {
-        assertEquals("I", IntegerToRoman.convert(1));
+        int input = 1;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("I", result);
     }
 
     @Test
     public void convertTwo_shouldReturnII() {
-        assertEquals("II", IntegerToRoman.convert(2));
+        int input = 2;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("II", result);
     }
 
     @Test
     public void convertThree_shouldReturnIII() {
-        assertEquals("III", IntegerToRoman.convert(3));
+        int input = 3;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("III", result);
     }
 
     @Test
     public void convertFour_shouldReturnIV() {
-        assertEquals("IV", IntegerToRoman.convert(4));
+        int input = 4;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("IV", result);
     }
 
     @Test
     public void convertFive_shouldReturnV() {
-        assertEquals("V", IntegerToRoman.convert(5));
+        int input = 5;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("V", result);
     }
 
     @Test
     public void convertSix_shouldReturnVI() {
-        assertEquals("VI", IntegerToRoman.convert(6));
-    }
+        int input = 6;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("VI", result);    }
 
     @Test
     public void convertSeven_shouldReturnVII() {
-        assertEquals("VII", IntegerToRoman.convert(7));
+        int input = 7;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("VII", result);
     }
 
     @Test
     public void convertEight_shouldReturnVIII() {
-        assertEquals("VIII", IntegerToRoman.convert(8));
+        int input = 8;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("VIII", result);
     }
 
     @Test
     public void convertNine_shouldReturnIX() {
-        assertEquals("IX", IntegerToRoman.convert(9));
+        int input = 9;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("IX", result);
     }
 
     @Test
     public void convertTen_shouldReturnX() {
-        assertEquals("X", IntegerToRoman.convert(10));
+        int input = 10;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("X", result);
     }
 
     @Test
     public void convertZero_shouldThrowException() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            IntegerToRoman.convert(0);
-        });
+        int input = 0;
+        Executable result = () -> IntegerToRoman.convert(input);
+        assertThrows(IllegalArgumentException.class, result);
     }
 
     @Test
     public void convertEleven_shouldThrowException() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            IntegerToRoman.convert(11);
-        });
+        int input = 11;
+        Executable result = () -> IntegerToRoman.convert(input);
+        assertThrows(IllegalArgumentException.class, result);
     }
 
     @Test
     public void convertNegative_shouldThrowException() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            IntegerToRoman.convert(-1);
-        });
+        int input = -1;
+        Executable result = () -> IntegerToRoman.convert(input);
+        assertThrows(IllegalArgumentException.class, result);
     }
 }
