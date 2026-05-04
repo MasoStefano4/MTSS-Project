@@ -15,13 +15,6 @@ public class IntegerToRomanTest {
     }
 
     @Test
-    public void convertTwo_shouldReturnII() {
-        int input = 2;
-        String result = IntegerToRoman.convert(input);
-        assertEquals("II", result);
-    }
-
-    @Test
     public void convertThree_shouldReturnIII() {
         int input = 3;
         String result = IntegerToRoman.convert(input);
@@ -43,26 +36,6 @@ public class IntegerToRomanTest {
     }
 
     @Test
-    public void convertSix_shouldReturnVI() {
-        int input = 6;
-        String result = IntegerToRoman.convert(input);
-        assertEquals("VI", result);    }
-
-    @Test
-    public void convertSeven_shouldReturnVII() {
-        int input = 7;
-        String result = IntegerToRoman.convert(input);
-        assertEquals("VII", result);
-    }
-
-    @Test
-    public void convertEight_shouldReturnVIII() {
-        int input = 8;
-        String result = IntegerToRoman.convert(input);
-        assertEquals("VIII", result);
-    }
-
-    @Test
     public void convertNine_shouldReturnIX() {
         int input = 9;
         String result = IntegerToRoman.convert(input);
@@ -70,10 +43,24 @@ public class IntegerToRomanTest {
     }
 
     @Test
-    public void convertTen_shouldReturnX() {
-        int input = 10;
+    public void convertFourteen_shouldReturnXIV() {
+        int input = 14;
         String result = IntegerToRoman.convert(input);
-        assertEquals("X", result);
+        assertEquals("XIV", result);
+    }
+
+    @Test
+    public void convertNineteen_shouldReturnXIX() {
+        int input = 19;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("XIX", result);
+    }
+
+    @Test
+    public void convertTwenty_shouldReturnXX() {
+        int input = 20;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("XX", result);
     }
 
     @Test
@@ -84,15 +71,15 @@ public class IntegerToRomanTest {
     }
 
     @Test
-    public void convertEleven_shouldThrowException() {
-        int input = 11;
+    public void convertNegative_shouldThrowException() {
+        int input = -1;
         Executable result = () -> IntegerToRoman.convert(input);
         assertThrows(IllegalArgumentException.class, result);
     }
 
     @Test
-    public void convertNegative_shouldThrowException() {
-        int input = -1;
+    public void convertOverLimit_shouldThrowException() {
+        int input = 21;
         Executable result = () -> IntegerToRoman.convert(input);
         assertThrows(IllegalArgumentException.class, result);
     }

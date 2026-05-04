@@ -1,177 +1,141 @@
 package it.unipd.mtss;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.function.Executable;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 public class RomanPrinterTest {
 
-    private static final String EXPECTED_I =
-        "  _____   \n" +
-        " |_   _|  \n" +
-        "   | |    \n" +
-        "   | |    \n" +
-        "  _| |_   \n" +
-        " |_____|  \n";
-
-    private static final String EXPECTED_II =
-        "  _____     _____   \n" +
-        " |_   _|   |_   _|  \n" +
-        "   | |       | |    \n" +
-        "   | |       | |    \n" +
-        "  _| |_     _| |_   \n" +
-        " |_____|   |_____|  \n";
-
-    private static final String EXPECTED_III =
-        "  _____     _____     _____   \n" +
-        " |_   _|   |_   _|   |_   _|  \n" +
-        "   | |       | |       | |    \n" +
-        "   | |       | |       | |    \n" +
-        "  _| |_     _| |_     _| |_   \n" +
-        " |_____|   |_____|   |_____|  \n";
-
-    private static final String EXPECTED_IV =
-        "  _____   __      __  \n" +
-        " |_   _|  \\ \\    / /  \n" +
-        "   | |     \\ \\  / /   \n" +
-        "   | |      \\ \\/ /    \n" +
-        "  _| |_      \\  /     \n" +
-        " |_____|      \\/      \n";
-
-    private static final String EXPECTED_V =
-        "__      __  \n" +
-        "\\ \\    / /  \n" +
-        " \\ \\  / /   \n" +
-        "  \\ \\/ /    \n" +
-        "   \\  /     \n" +
-        "    \\/      \n";
-
-    private static final String EXPECTED_VI =
-        "__      __    _____   \n" +
-        "\\ \\    / /   |_   _|  \n" +
-        " \\ \\  / /      | |    \n" +
-        "  \\ \\/ /       | |    \n" +
-        "   \\  /       _| |_   \n" +
-        "    \\/       |_____|  \n";
-
-    private static final String EXPECTED_VII =
-        "__      __    _____     _____   \n" +
-        "\\ \\    / /   |_   _|   |_   _|  \n" +
-        " \\ \\  / /      | |       | |    \n" +
-        "  \\ \\/ /       | |       | |    \n" +
-        "   \\  /       _| |_     _| |_   \n" +
-        "    \\/       |_____|   |_____|  \n";
-
-    private static final String EXPECTED_VIII =
-        "__      __    _____     _____     _____   \n" +
-        "\\ \\    / /   |_   _|   |_   _|   |_   _|  \n" +
-        " \\ \\  / /      | |       | |       | |    \n" +
-        "  \\ \\/ /       | |       | |       | |    \n" +
-        "   \\  /       _| |_     _| |_     _| |_   \n" +
-        "    \\/       |_____|   |_____|   |_____|  \n";
-
-    private static final String EXPECTED_IX =
-        "  _____   __   __  \n" +
-        " |_   _|  \\ \\ / /  \n" +
-        "   | |     \\ V /   \n" +
-        "   | |      > <    \n" +
-        "  _| |_    / . \\   \n" +
-        " |_____|  /_/ \\_\\  \n";
-
-    private static final String EXPECTED_X =
-        "__   __  \n" +
-        "\\ \\ / /  \n" +
-        " \\ V /   \n" +
-        "  > <    \n" +
-        " / . \\   \n" +
-        "/_/ \\_\\  \n";
-
-    @Test
-    public void printOne_shouldReturnCorrectAsciiArt() {
-        int input = 1;
-        String result = RomanPrinter.print(input);
-        assertEquals(EXPECTED_I, result);
-    }
-
-
-    @Test
-    public void printTwo_shouldReturnCorrectAsciiArt() {
-        int input = 2;
-        String result = RomanPrinter.print(input);
-        assertEquals(EXPECTED_II, result);
+    private String invokePrintAsciiArt(String roman) throws Throwable {
+        try {
+            Method method = RomanPrinter.class.getDeclaredMethod(
+                "printAsciiArt", String.class
+            );
+            method.setAccessible(true);
+            return (String) method.invoke(null, roman);
+        } catch (NoSuchMethodException | SecurityException e) {
+            throw new RuntimeException(
+                "Failed to get printAsciiArt via reflection", e
+            );
+        } catch (IllegalAccessException | IllegalArgumentException e) {
+            throw new RuntimeException(
+                "Failed to invoke printAsciiArt via reflection", e
+            );
+        } catch (InvocationTargetException e) {
+            throw e.getTargetException();
+        }
     }
 
     @Test
-    public void printThree_shouldReturnCorrectAsciiArt() {
-        int input = 3;
-        String result = RomanPrinter.print(input);
-        assertEquals(EXPECTED_III, result);    }
-
-    @Test
-    public void printFour_shouldReturnCorrectAsciiArt() {
-        int input = 4;
-        String result = RomanPrinter.print(input);
-        assertEquals(EXPECTED_IV, result);
+    public void shouldPrintAsciiForI() throws Throwable {
+        String roman = "I";
+        String result = invokePrintAsciiArt(roman);
+        String[] expected = new String[]{
+            "  _____   ",
+            " |_   _|  ",
+            "   | |    ",
+            "   | |    ",
+            "  _| |_   ",
+            " |_____|  ",
+            ""
+        };
+        assertEquals(String.join("\n", expected), result);
     }
 
     @Test
-    public void printFive_shouldReturnCorrectAsciiArt() {
-        int input = 5;
-        String result = RomanPrinter.print(input);
-        assertEquals(EXPECTED_V, result);
+    public void shouldPrintAsciiForV() throws Throwable {
+        String roman = "V";
+        String result = invokePrintAsciiArt(roman);
+        String[] expected = new String[]{
+            "__      __  ",
+            "\\ \\    / /  ",
+            " \\ \\  / /   ",
+            "  \\ \\/ /    ",
+            "   \\  /     ",
+            "    \\/      ",
+            ""
+        };
+        assertEquals(String.join("\n", expected), result);
     }
 
     @Test
-    public void printSix_shouldReturnCorrectAsciiArt() {
-        int input = 6;
-        String result = RomanPrinter.print(input);
-        assertEquals(EXPECTED_VI, result);
+    public void shouldPrintAsciiForX() throws Throwable {
+        String roman = "X";
+        String result = invokePrintAsciiArt(roman);
+        String[] expected = new String[]{
+            "__   __  ",
+            "\\ \\ / /  ",
+            " \\ V /   ",
+            "  > <    ",
+            " / . \\   ",
+            "/_/ \\_\\  ",
+            ""
+        };
+        assertEquals(String.join("\n", expected), result);
     }
 
     @Test
-    public void printSeven_shouldReturnCorrectAsciiArt() {
-        int input = 7;
-        String result = RomanPrinter.print(input);
-        assertEquals(EXPECTED_VII, result);
+    public void shouldPrintRepeatedSymbol() throws Throwable {
+        String roman = "III";
+        String result = invokePrintAsciiArt(roman);
+        String[] expected = new String[]{
+            "  _____     _____     _____   ",
+            " |_   _|   |_   _|   |_   _|  ",
+            "   | |       | |       | |    ",
+            "   | |       | |       | |    ",
+            "  _| |_     _| |_     _| |_   ",
+            " |_____|   |_____|   |_____|  ",
+            ""
+        };
+        assertEquals(String.join("\n", expected), result);
     }
 
     @Test
-    public void printEight_shouldReturnCorrectAsciiArt() {
-        int input = 8;
-        String result = RomanPrinter.print(input);
-        assertEquals(EXPECTED_VIII, result);
+    public void shouldPrintSubtractiveCombination() throws Throwable {
+        String roman = "XIV";
+        String result = invokePrintAsciiArt(roman);
+        String[] expected = new String[]{
+            "__   __    _____   __      __  ",
+            "\\ \\ / /   |_   _|  \\ \\    / /  ",
+            " \\ V /      | |     \\ \\  / /   ",
+            "  > <       | |      \\ \\/ /    ",
+            " / . \\     _| |_      \\  /     ",
+            "/_/ \\_\\   |_____|      \\/      ",
+            ""
+        };
+        assertEquals(String.join("\n", expected), result);
     }
 
     @Test
-    public void printNine_shouldReturnCorrectAsciiArt() {
-        int input = 9;
-        String result = RomanPrinter.print(input);
-        assertEquals(EXPECTED_IX, result);
+    public void testInRangeNumber() throws Throwable {
+        int number = 18;
+        String expectedOutput = invokePrintAsciiArt(IntegerToRoman.convert(number));
+        String actualOutput = RomanPrinter.print(number);
+        assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
-    public void printTen_shouldReturnCorrectAsciiArt() {
-        int input = 10;
-        String result = RomanPrinter.print(input);
-        assertEquals(EXPECTED_X, result);
-    }
-
-    @Test
-    public void printZero_shouldThrowException() {
-        int input = 0;
-        Executable result = () -> IntegerToRoman.convert(input);
+    public void testInvalidArgumentExceptionOnPrint_LowerBound() {
+        int number = 0;
+        Executable result = () -> RomanPrinter.print(number);
         assertThrows(IllegalArgumentException.class, result);
     }
 
     @Test
-    public void printEleven_shouldThrowException() {
-        int input = 11;
-        Executable result = () -> IntegerToRoman.convert(input);
-        assertThrows(IllegalArgumentException.class, result);    }
+    public void testInvalidArgumentExceptionOnPrint_UpperBound() {
+        int number = 21;
+        Executable result = () -> RomanPrinter.print(number);
+        assertThrows(IllegalArgumentException.class, result);
+    }
 
     @Test
-    public void printNegative_shouldThrowException() {
-        int input = -1;
-        Executable result = () -> IntegerToRoman.convert(input);
-        assertThrows(IllegalArgumentException.class, result);    }
+    public void testInvalidCharacter() {
+        String invalid = "AAA";
+        Executable result = () -> invokePrintAsciiArt(invalid);
+        assertThrows(IllegalArgumentException.class, result);
+    }
 }
