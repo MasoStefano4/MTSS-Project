@@ -79,6 +79,22 @@ public class RomanPrinterTest {
     }
 
     @Test
+    public void shouldPrintAsciiForL() throws Throwable {
+        String roman = "L";
+        String[] expected = new String[]{
+                " _        ",
+                "| |       ",
+                "| |       ",
+                "| |       ",
+                "| |____   ",
+                "|______|  ",
+                ""
+        };
+
+        assertEquals(String.join("\n", expected), invokePrintAsciiArt(roman));
+    }
+
+    @Test
     public void shouldPrintRepeatedSymbol() throws Throwable {
         String roman = "III";
         String result = invokePrintAsciiArt(roman);
@@ -112,7 +128,7 @@ public class RomanPrinterTest {
 
     @Test
     public void testInRangeNumber() throws Throwable {
-        int number = 18;
+        int number = 44;
         String expectedOutput = invokePrintAsciiArt(IntegerToRoman.convert(number));
         String actualOutput = RomanPrinter.print(number);
         assertEquals(expectedOutput, actualOutput);
@@ -127,7 +143,7 @@ public class RomanPrinterTest {
 
     @Test
     public void testInvalidArgumentExceptionOnPrint_UpperBound() {
-        int number = 21;
+        int number = 51;
         Executable result = () -> RomanPrinter.print(number);
         assertThrows(IllegalArgumentException.class, result);
     }
