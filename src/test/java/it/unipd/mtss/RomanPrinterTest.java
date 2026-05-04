@@ -1,8 +1,8 @@
 package it.unipd.mtss;
-
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.function.Executable;
 
 public class RomanPrinterTest {
 
@@ -54,48 +54,124 @@ public class RomanPrinterTest {
         "   \\  /       _| |_   \n" +
         "    \\/       |_____|  \n";
 
+    private static final String EXPECTED_VII =
+        "__      __    _____     _____   \n" +
+        "\\ \\    / /   |_   _|   |_   _|  \n" +
+        " \\ \\  / /      | |       | |    \n" +
+        "  \\ \\/ /       | |       | |    \n" +
+        "   \\  /       _| |_     _| |_   \n" +
+        "    \\/       |_____|   |_____|  \n";
+
+    private static final String EXPECTED_VIII =
+        "__      __    _____     _____     _____   \n" +
+        "\\ \\    / /   |_   _|   |_   _|   |_   _|  \n" +
+        " \\ \\  / /      | |       | |       | |    \n" +
+        "  \\ \\/ /       | |       | |       | |    \n" +
+        "   \\  /       _| |_     _| |_     _| |_   \n" +
+        "    \\/       |_____|   |_____|   |_____|  \n";
+
+    private static final String EXPECTED_IX =
+        "  _____   __   __  \n" +
+        " |_   _|  \\ \\ / /  \n" +
+        "   | |     \\ V /   \n" +
+        "   | |      > <    \n" +
+        "  _| |_    / . \\   \n" +
+        " |_____|  /_/ \\_\\  \n";
+
+    private static final String EXPECTED_X =
+        "__   __  \n" +
+        "\\ \\ / /  \n" +
+        " \\ V /   \n" +
+        "  > <    \n" +
+        " / . \\   \n" +
+        "/_/ \\_\\  \n";
+
     @Test
     public void printOne_shouldReturnCorrectAsciiArt() {
-        assertEquals(EXPECTED_I, RomanPrinter.print(1));
+        int input = 1;
+        String result = RomanPrinter.print(input);
+        assertEquals(EXPECTED_I, result);
     }
+
 
     @Test
     public void printTwo_shouldReturnCorrectAsciiArt() {
-        assertEquals(EXPECTED_II, RomanPrinter.print(2));
+        int input = 2;
+        String result = RomanPrinter.print(input);
+        assertEquals(EXPECTED_II, result);
     }
 
     @Test
     public void printThree_shouldReturnCorrectAsciiArt() {
-        assertEquals(EXPECTED_III, RomanPrinter.print(3));
-    }
+        int input = 3;
+        String result = RomanPrinter.print(input);
+        assertEquals(EXPECTED_III, result);    }
 
     @Test
     public void printFour_shouldReturnCorrectAsciiArt() {
-        assertEquals(EXPECTED_IV, RomanPrinter.print(4));
+        int input = 4;
+        String result = RomanPrinter.print(input);
+        assertEquals(EXPECTED_IV, result);
     }
 
     @Test
     public void printFive_shouldReturnCorrectAsciiArt() {
-        assertEquals(EXPECTED_V, RomanPrinter.print(5));
+        int input = 5;
+        String result = RomanPrinter.print(input);
+        assertEquals(EXPECTED_V, result);
     }
 
     @Test
     public void printSix_shouldReturnCorrectAsciiArt() {
-        assertEquals(EXPECTED_VI, RomanPrinter.print(6));
+        int input = 6;
+        String result = RomanPrinter.print(input);
+        assertEquals(EXPECTED_VI, result);
+    }
+
+    @Test
+    public void printSeven_shouldReturnCorrectAsciiArt() {
+        int input = 7;
+        String result = RomanPrinter.print(input);
+        assertEquals(EXPECTED_VII, result);
+    }
+
+    @Test
+    public void printEight_shouldReturnCorrectAsciiArt() {
+        int input = 8;
+        String result = RomanPrinter.print(input);
+        assertEquals(EXPECTED_VIII, result);
+    }
+
+    @Test
+    public void printNine_shouldReturnCorrectAsciiArt() {
+        int input = 9;
+        String result = RomanPrinter.print(input);
+        assertEquals(EXPECTED_IX, result);
+    }
+
+    @Test
+    public void printTen_shouldReturnCorrectAsciiArt() {
+        int input = 10;
+        String result = RomanPrinter.print(input);
+        assertEquals(EXPECTED_X, result);
     }
 
     @Test
     public void printZero_shouldThrowException() {
-        assertThrows(IllegalArgumentException.class, () -> RomanPrinter.print(0));
+        int input = 0;
+        Executable result = () -> IntegerToRoman.convert(input);
+        assertThrows(IllegalArgumentException.class, result);
     }
 
     @Test
-    public void printSeven_shouldThrowException() {
-        assertThrows(IllegalArgumentException.class, () -> RomanPrinter.print(7));
-    }
+    public void printEleven_shouldThrowException() {
+        int input = 11;
+        Executable result = () -> IntegerToRoman.convert(input);
+        assertThrows(IllegalArgumentException.class, result);    }
 
     @Test
     public void printNegative_shouldThrowException() {
-        assertThrows(IllegalArgumentException.class, () -> RomanPrinter.print(-1));
-    }
+        int input = -1;
+        Executable result = () -> IntegerToRoman.convert(input);
+        assertThrows(IllegalArgumentException.class, result);    }
 }

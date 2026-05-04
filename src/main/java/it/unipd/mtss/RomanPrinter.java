@@ -24,6 +24,15 @@ public class RomanPrinter {
         "    \\/    "
     };
 
+    private static final String[] ASCII_X = {
+        "__   __",
+        "\\ \\ / /",
+        " \\ V / ",
+        "  > <  ",
+        " / . \\ ",
+        "/_/ \\_\\"
+    };
+
     public static String print(int num) {
         return printAsciiArt(IntegerToRoman.convert(num));
     }
@@ -44,6 +53,7 @@ public class RomanPrinter {
         switch (c) {
             case 'I': return ASCII_I;
             case 'V': return ASCII_V;
+            case 'X': return ASCII_X;
             default: throw new IllegalArgumentException(
                 "Carattere romano non riconosciuto: " + c
             );
