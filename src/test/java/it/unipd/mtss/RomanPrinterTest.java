@@ -82,12 +82,12 @@ public class RomanPrinterTest {
     public void shouldPrintAsciiForL() throws Throwable {
         String roman = "L";
         String[] expected = new String[]{
-                "  _       ",
-                " | |      ",
-                " | |      ",
-                " | |      ",
-                " | |____  ",
-                " |______|  ",
+                " _        ",
+                "| |       ",
+                "| |       ",
+                "| |       ",
+                "| |____   ",
+                "|______|  ",
                 ""
         };
 

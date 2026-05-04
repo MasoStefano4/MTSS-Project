@@ -34,12 +34,12 @@ public class RomanPrinter {
     };
 
     private static final String[] ASCII_L = {
-        "  _     ",
-        " | |    ",
-        " | |    ",
-        " | |    ",
-        " | |____",
-        " |______|"
+        " _      ",
+        "| |     ",
+        "| |     ",
+        "| |     ",
+        "| |____ ",
+        "|______|"
     };
 
     public static String print(int num) {
