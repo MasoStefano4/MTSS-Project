@@ -85,6 +85,27 @@ public class IntegerToRomanTest {
     }
 
     @Test
+    public void convertFourtyfour_shouldReturnXLIV() {
+        int input = 44;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("XLIV", result);
+    }
+
+    @Test
+    public void convertFourtynine_shouldReturnXLIX() {
+        int input = 49;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("XLIX", result);
+    }
+
+    @Test
+    public void convertFifty_shouldReturnL() {
+        int input = 50;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("L", result);
+    }
+
+    @Test
     public void convertZero_shouldThrowException() {
         int input = 0;
         Executable result = () -> IntegerToRoman.convert(input);
