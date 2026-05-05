@@ -99,14 +99,14 @@ public class IntegerToRomanTest {
     }
 
     @Test
-    public void convertThreehundredFourtyNine_shouldReturnC() {
+    public void convertThreeHundredFourtyNine_shouldReturnCCCXLIX() {
         int input = 349;
         String result = IntegerToRoman.convert(input);
         assertEquals("CCCXLIX", result);
     }
 
     @Test
-    public void convertFourhundredNintyNine_shouldReturnC() {
+    public void convertFourHundredNinetyNine_shouldReturnCDXCIX() {
         int input = 499;
         String result = IntegerToRoman.convert(input);
         assertEquals("CDXCIX", result);
