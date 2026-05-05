@@ -43,24 +43,17 @@ public class IntegerToRomanTest {
     }
 
     @Test
+    public void convertTen_shouldReturnX() {
+        int input = 10;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("X", result);
+    }
+
+    @Test
     public void convertForty_shouldReturnXL() {
         int input = 40;
         String result = IntegerToRoman.convert(input);
         assertEquals("XL", result);
-    }
-
-    @Test
-    public void convertFourtyfour_shouldReturnXLIV() {
-        int input = 44;
-        String result = IntegerToRoman.convert(input);
-        assertEquals("XLIV", result);
-    }
-
-    @Test
-    public void convertFourtynine_shouldReturnXLIX() {
-        int input = 49;
-        String result = IntegerToRoman.convert(input);
-        assertEquals("XLIX", result);
     }
 
     @Test
@@ -99,10 +92,17 @@ public class IntegerToRomanTest {
     }
 
     @Test
-    public void convertThreeHundredFourtyNine_shouldReturnCCCXLIX() {
+    public void convertThreeHundredFortyNine_shouldReturnCCCXLIX() {
         int input = 349;
         String result = IntegerToRoman.convert(input);
         assertEquals("CCCXLIX", result);
+    }
+
+    @Test
+    public void convertFourHundred_shouldReturnCD() {
+        int input = 400;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("CD", result);
     }
 
     @Test
@@ -110,6 +110,41 @@ public class IntegerToRomanTest {
         int input = 499;
         String result = IntegerToRoman.convert(input);
         assertEquals("CDXCIX", result);
+    }
+
+    @Test
+    public void convertFiveHundred_shouldReturnD() {
+        int input = 500;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("D", result);
+    }
+
+    @Test
+    public void convertSevenHundred_shouldReturnDCC() {
+        int input = 700;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("DCC", result);
+    }
+
+    @Test
+    public void convertNineHundred_shouldReturnCM() {
+        int input = 900;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("CM", result);
+    }
+
+    @Test
+    public void convertNineHundredNinetyNine_shouldReturnCMXCIX() {
+        int input = 999;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("CMXCIX", result);
+    }
+
+    @Test
+    public void convertThousand_shouldReturnM() {
+        int input = 1000;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("M", result);
     }
 
     @Test
@@ -128,7 +163,7 @@ public class IntegerToRomanTest {
 
     @Test
     public void convertOverLimit_shouldThrowException() {
-        int input = 501;
+        int input = 1001;
         Executable result = () -> IntegerToRoman.convert(input);
         assertThrows(IllegalArgumentException.class, result);
     }
