@@ -81,30 +81,30 @@ public class RomanPrinterTest {
     @Test
     public void shouldPrintAsciiForL() throws Throwable {
         String roman = "L";
+        String result = invokePrintAsciiArt(roman);
         String[] expected = new String[]{
-                " _        ",
-                "| |       ",
-                "| |       ",
-                "| |       ",
-                "| |____   ",
-                "|______|  ",
-                ""
+            " _        ",
+            "| |       ",
+            "| |       ",
+            "| |       ",
+            "| |____   ",
+            "|______|  ",
+            ""
         };
-
-        assertEquals(String.join("\n", expected), invokePrintAsciiArt(roman));
+        assertEquals(String.join("\n", expected), result);
     }
 
     @Test
-    public void shouldPrintRepeatedSymbol() throws Throwable {
-        String roman = "III";
+    public void shouldPrintAsciiForC() throws Throwable {
+        String roman = "C";
         String result = invokePrintAsciiArt(roman);
         String[] expected = new String[]{
-            "  _____     _____     _____   ",
-            " |_   _|   |_   _|   |_   _|  ",
-            "   | |       | |       | |    ",
-            "   | |       | |       | |    ",
-            "  _| |_     _| |_     _| |_   ",
-            " |_____|   |_____|   |_____|  ",
+            "  _____   ",
+            " / ____|  ",
+            "| |       ",
+            "| |       ",
+            "| |____   ",
+            " \\_____|  ",
             ""
         };
         assertEquals(String.join("\n", expected), result);
@@ -112,15 +112,15 @@ public class RomanPrinterTest {
 
     @Test
     public void shouldPrintSubtractiveCombination() throws Throwable {
-        String roman = "XIV";
+        String roman = "XCIX";
         String result = invokePrintAsciiArt(roman);
         String[] expected = new String[]{
-            "__   __    _____   __      __  ",
-            "\\ \\ / /   |_   _|  \\ \\    / /  ",
-            " \\ V /      | |     \\ \\  / /   ",
-            "  > <       | |      \\ \\/ /    ",
-            " / . \\     _| |_      \\  /     ",
-            "/_/ \\_\\   |_____|      \\/      ",
+            "__   __    _____     _____   __   __  ",
+            "\\ \\ / /   / ____|   |_   _|  \\ \\ / /  ",
+            " \\ V /   | |          | |     \\ V /   ",
+            "  > <    | |          | |      > <    ",
+            " / . \\   | |____     _| |_    / . \\   ",
+            "/_/ \\_\\   \\_____|   |_____|  /_/ \\_\\  ",
             ""
         };
         assertEquals(String.join("\n", expected), result);
@@ -128,7 +128,7 @@ public class RomanPrinterTest {
 
     @Test
     public void testInRangeNumber() throws Throwable {
-        int number = 44;
+        int number = 88;
         String expectedOutput = invokePrintAsciiArt(IntegerToRoman.convert(number));
         String actualOutput = RomanPrinter.print(number);
         assertEquals(expectedOutput, actualOutput);
@@ -143,7 +143,7 @@ public class RomanPrinterTest {
 
     @Test
     public void testInvalidArgumentExceptionOnPrint_UpperBound() {
-        int number = 51;
+        int number = 101;
         Executable result = () -> RomanPrinter.print(number);
         assertThrows(IllegalArgumentException.class, result);
     }

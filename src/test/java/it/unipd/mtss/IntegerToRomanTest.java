@@ -43,24 +43,10 @@ public class IntegerToRomanTest {
     }
 
     @Test
-    public void convertFourteen_shouldReturnXIV() {
-        int input = 14;
+    public void convertForty_shouldReturnXL() {
+        int input = 40;
         String result = IntegerToRoman.convert(input);
-        assertEquals("XIV", result);
-    }
-
-    @Test
-    public void convertNineteen_shouldReturnXIX() {
-        int input = 19;
-        String result = IntegerToRoman.convert(input);
-        assertEquals("XIX", result);
-    }
-
-    @Test
-    public void convertTwenty_shouldReturnXX() {
-        int input = 20;
-        String result = IntegerToRoman.convert(input);
-        assertEquals("XX", result);
+        assertEquals("XL", result);
     }
 
     @Test
@@ -85,6 +71,34 @@ public class IntegerToRomanTest {
     }
 
     @Test
+    public void convertEightyEight_shouldReturnLXXXVIII() {
+        int input = 88;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("LXXXVIII", result);
+    }
+
+    @Test
+    public void convertNinety_shouldReturnXC() {
+        int input = 90;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("XC", result);
+    }
+
+    @Test
+    public void convertNinetyNine_shouldReturnXCIX() {
+        int input = 99;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("XCIX", result);
+    }
+
+    @Test
+    public void convertHundred_shouldReturnC() {
+        int input = 100;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("C", result);
+    }
+
+    @Test
     public void convertZero_shouldThrowException() {
         int input = 0;
         Executable result = () -> IntegerToRoman.convert(input);
@@ -100,7 +114,7 @@ public class IntegerToRomanTest {
 
     @Test
     public void convertOverLimit_shouldThrowException() {
-        int input = 51;
+        int input = 101;
         Executable result = () -> IntegerToRoman.convert(input);
         assertThrows(IllegalArgumentException.class, result);
     }
