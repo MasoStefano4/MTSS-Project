@@ -99,6 +99,20 @@ public class IntegerToRomanTest {
     }
 
     @Test
+    public void convertThreeHundredFourtyNine_shouldReturnCCCXLIX() {
+        int input = 349;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("CCCXLIX", result);
+    }
+
+    @Test
+    public void convertFourHundredNinetyNine_shouldReturnCDXCIX() {
+        int input = 499;
+        String result = IntegerToRoman.convert(input);
+        assertEquals("CDXCIX", result);
+    }
+
+    @Test
     public void convertZero_shouldThrowException() {
         int input = 0;
         Executable result = () -> IntegerToRoman.convert(input);
@@ -114,7 +128,7 @@ public class IntegerToRomanTest {
 
     @Test
     public void convertOverLimit_shouldThrowException() {
-        int input = 101;
+        int input = 501;
         Executable result = () -> IntegerToRoman.convert(input);
         assertThrows(IllegalArgumentException.class, result);
     }

@@ -111,24 +111,43 @@ public class RomanPrinterTest {
     }
 
     @Test
-    public void shouldPrintSubtractiveCombination() throws Throwable {
-        String roman = "XCIX";
+    public void shouldPrintAsciiForD() throws Throwable {
+        String roman = "D";
         String result = invokePrintAsciiArt(roman);
         String[] expected = new String[]{
-            "__   __    _____     _____   __   __  ",
-            "\\ \\ / /   / ____|   |_   _|  \\ \\ / /  ",
-            " \\ V /   | |          | |     \\ V /   ",
-            "  > <    | |          | |      > <    ",
-            " / . \\   | |____     _| |_    / . \\   ",
-            "/_/ \\_\\   \\_____|   |_____|  /_/ \\_\\  ",
+            " _____    ",
+            "|  __ \\   ",
+            "| |  | |  ",
+            "| |  | |  ",
+            "| |__| |  ",
+            "|_____/   ",
             ""
         };
         assertEquals(String.join("\n", expected), result);
     }
 
     @Test
+    public void shouldPrintSubtractiveCombination() throws Throwable {
+        String roman = "CDLXXXIX";
+        String[] expectedLines = new String[]{
+            "  _____    _____     _        __   __  __   __  __   __    _____   __   __  ",
+            " / ____|  |  __ \\   | |       \\ \\ / /  \\ \\ / /  \\ \\ / /   |_   _|  \\ \\ / /  ",
+            "| |       | |  | |  | |        \\ V /    \\ V /    \\ V /      | |     \\ V /   ",
+            "| |       | |  | |  | |         > <      > <      > <       | |      > <    ",
+            "| |____   | |__| |  | |____    / . \\    / . \\    / . \\     _| |_    / . \\   ",
+            " \\_____|  |_____/   |______|  /_/ \\_\\  /_/ \\_\\  /_/ \\_\\   |_____|  /_/ \\_\\  ",
+            ""
+        };
+        String expected = String.join("\n", expectedLines);
+        String result = invokePrintAsciiArt(roman);
+        assertEquals(expected, result);
+    }
+
+
+
+    @Test
     public void testInRangeNumber() throws Throwable {
-        int number = 88;
+        int number = 444;
         String expectedOutput = invokePrintAsciiArt(IntegerToRoman.convert(number));
         String actualOutput = RomanPrinter.print(number);
         assertEquals(expectedOutput, actualOutput);
@@ -143,7 +162,7 @@ public class RomanPrinterTest {
 
     @Test
     public void testInvalidArgumentExceptionOnPrint_UpperBound() {
-        int number = 101;
+        int number = 501;
         Executable result = () -> RomanPrinter.print(number);
         assertThrows(IllegalArgumentException.class, result);
     }
