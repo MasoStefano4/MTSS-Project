@@ -127,6 +127,22 @@ public class RomanPrinterTest {
     }
 
     @Test
+    public void shouldPrintAsciiForM() throws Throwable {
+        String roman = "M";
+        String result = invokePrintAsciiArt(roman);
+        String[] expected = new String[]{
+            " __  __   ",
+            "|  \\/  |  ",
+            "| \\  / |  ",
+            "| |\\/| |  ",
+            "| |  | |  ",
+            "|_|  |_|  ",
+            ""
+        };
+        assertEquals(String.join("\n", expected), result);
+    }
+
+    @Test
     public void shouldPrintSubtractiveCombination() throws Throwable {
         String roman = "CDLXXXIX";
         String[] expectedLines = new String[]{
@@ -162,7 +178,7 @@ public class RomanPrinterTest {
 
     @Test
     public void testInvalidArgumentExceptionOnPrint_UpperBound() {
-        int number = 501;
+        int number = 1001;
         Executable result = () -> RomanPrinter.print(number);
         assertThrows(IllegalArgumentException.class, result);
     }
